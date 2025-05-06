@@ -5,6 +5,7 @@ export default function RootLayout() {
     <Stack
       screenOptions={({ route }) => ({
         title: route.name === "index" ? "Login" : route.name,
+        headerShown: false,
       })}
     />
   );

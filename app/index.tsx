@@ -2,9 +2,12 @@ import AppButton from "@/components/AppButton";
 import AppPasswordField from "@/components/AppPasswordField";
 import AppTextField from "@/components/AppTextField";
 import { white } from "@/constants/Colors";
+import { useRouter } from "expo-router";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 
 export default function Index() {
+  const router = useRouter();
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.contentLogin}>
@@ -13,7 +16,12 @@ export default function Index() {
           <AppPasswordField value="test" onChangeText={() => {}} />
         </View>
         <View style={styles.viewButton}>
-          <AppButton title="Login" onPress={() => {}} />
+          <AppButton
+            title="Login"
+            onPress={() => {
+              router.replace("/(tabs)");
+            }}
+          />
         </View>
       </View>
     </SafeAreaView>
