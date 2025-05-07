@@ -9,3 +9,5 @@ export const purple900 = '#4A148C';
 export const grey100 = '#DEDFE4';
 export const grey200 = '#D3D4D9';
 export const grey300 = '#C1C2C7';
+
+export const red500 = '#F44336';

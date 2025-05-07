@@ -20,6 +20,7 @@ const AppTextField: React.FC<AppTextFieldProps> = ({
       value={value}
       onChangeText={onChangeText}
       placeholder={placeholder}
+      autoCapitalize="none"
     />
   );
 };

@@ -29,6 +29,9 @@ const AppPasswordField: React.FC<AppPasswordFieldProps> = ({
         onChangeText={onChangeText}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
+        keyboardType="default"
+        autoCapitalize="none"
+        returnKeyType="done"
       />
       <TouchableOpacity
         style={styles.eyeIcon}
