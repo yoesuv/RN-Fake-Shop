@@ -3,6 +3,8 @@ import AppPasswordField from "@/components/AppPasswordField";
 import AppTextField from "@/components/AppTextField";
 import { red500, white } from "@/constants/Colors";
 import { ILoginInput, schemaYupLogin } from "@/constants/YupSchema";
+import { useLogin } from "@/hooks/useLogin";
+import { LoginRequest } from "@/models";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "expo-router";
 import { Controller, useForm } from "react-hook-form";
@@ -10,6 +12,7 @@ import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
   const router = useRouter();
+  const { mutate, isPending, error } = useLogin();
 
   const {
     control,
@@ -23,7 +26,20 @@ export default function Index() {
 
   const onSubmit = handleSubmit(({ username, password }) => {
     console.log("Login", `Username: ${username}\nPassword: ${password}`);
-    //router.replace("/(tabs)");
+    let loginData: LoginRequest = {
+      username: username,
+      password: password,
+    };
+    mutate(loginData, {
+      onSuccess: (data) => {
+        console.log("Login successful, token:", data.token);
+        router.replace("/(tabs)");
+      },
+      onError: (error) => {
+        console.error("Login failed:", error.message);
+        alert(error.message);
+      },
+    });
   });
 
   return (
@@ -33,6 +49,7 @@ export default function Index() {
           <Controller
             control={control}
             name="username"
+            defaultValue="mor_2314"
             render={({ field: { onChange, onBlur, value } }) => (
               <View>
                 <AppTextField
@@ -53,6 +70,7 @@ export default function Index() {
           <Controller
             control={control}
             name="password"
+            defaultValue="83r5^_"
             render={({ field: { onChange, onBlur, value } }) => (
               <View>
                 <AppPasswordField
@@ -74,6 +92,7 @@ export default function Index() {
             title="Login"
             onPress={onSubmit}
             disabled={!formState.isValid}
+            isLoading={isPending}
           />
         </View>
       </View>

@@ -1,5 +1,5 @@
 // PasswordField.tsx
-import { black, purple500, white } from "@/constants/Colors";
+import { purple500, white } from "@/constants/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { useState } from "react";
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
@@ -40,7 +40,7 @@ const AppPasswordField: React.FC<AppPasswordFieldProps> = ({
         <Ionicons
           name={secureTextEntry ? "eye" : "eye-off"}
           size={24}
-          color={black}
+          color={purple500}
         />
       </TouchableOpacity>
     </View>
