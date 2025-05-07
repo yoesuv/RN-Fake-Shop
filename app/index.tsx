@@ -5,15 +5,17 @@ import { red500, white } from "@/constants/Colors";
 import { ILoginInput, schemaYupLogin } from "@/constants/YupSchema";
 import { useLogin } from "@/hooks/useLogin";
 import { LoginRequest } from "@/models";
-import { saveToken } from "@/utils/storage";
+import { getToken, saveToken } from "@/utils/storage";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "expo-router";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
+  const [isLogin, setIsLogin] = useState(true);
   const router = useRouter();
-  const { mutate, isPending, error } = useLogin();
+  const { mutate, isPending } = useLogin();
 
   const {
     control,
@@ -43,6 +45,23 @@ export default function Index() {
       },
     });
   });
+
+  async function checkLoginOrNot() {
+    try {
+      const token = await getToken();
+      if (token) {
+        setIsLogin(true);
+        router.replace("/(tabs)");
+      }
+    } catch (error) {
+      setIsLogin(false);
+      console.error("Error checking token:", error);
+    }
+  }
+
+  useEffect(() => {
+    checkLoginOrNot();
+  }, [isLogin]);
 
   return (
     <SafeAreaView style={styles.container}>

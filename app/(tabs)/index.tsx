@@ -1,4 +1,4 @@
-import { purple500, purple700 } from "@/constants/Colors";
+import { black, purple500, purple700, white } from "@/constants/Colors";
 import { useProducts } from "@/hooks/useProducts";
 import { ProductResponse } from "@/models";
 import {
@@ -41,7 +41,7 @@ export default function Dashboard() {
 
   if (isLoading) {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.containerLoading}>
         <ActivityIndicator size="large" color={purple500} />
       </SafeAreaView>
     );
@@ -70,13 +70,20 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
   },
+  containerLoading: {
+    flex: 1,
+    paddingHorizontal: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: white,
+  },
   productItem: {
     width: itemWidth,
-    backgroundColor: "#fff",
+    backgroundColor: white,
     borderRadius: 8,
     padding: 12,
     marginBottom: 16,
-    shadowColor: "#000",
+    shadowColor: black,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
