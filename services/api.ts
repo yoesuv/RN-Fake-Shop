@@ -12,3 +12,8 @@ export const login = async (login: LoginRequest) => {
     const response = await api.post('auth/login',login);
     return response.data;
 };
+
+export const products = async () => {
+    const response = await api.get('/products');
+    return response.data;
+};
