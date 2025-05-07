@@ -1,7 +1,7 @@
 import AppButton from "@/components/AppButton";
 import { purple500, white } from "@/constants/Colors";
+import { useAuth } from "@/contexts/AuthContext";
 import { useDetailUser } from "@/hooks/useDetailUser";
-import { removeToken } from "@/utils/storage";
 import { useRouter } from "expo-router";
 import {
   ActivityIndicator,
@@ -14,10 +14,11 @@ import {
 export default function Profile() {
   const router = useRouter();
   const { data: user, isLoading } = useDetailUser();
+  const { logout } = useAuth();
 
   async function handleLogout() {
-    await removeToken();
-    router.replace("/");
+    await logout();
+    router.replace("/login");
   }
 
   if (isLoading) {
