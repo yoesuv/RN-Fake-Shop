@@ -1,5 +1,8 @@
 ## Fake Shop
 
+create an app with shop like functional. API service provided by `https://fakestoreapi.com`  
+download apk file [here](https://e.pcloud.link/publink/show?code=XZfiTqZxulMaWUhrFbRN8k0z1881yzqN4qV)
+
 #### Dependencies
 
 - [Async Storage](https://www.npmjs.com/package/@react-native-async-storage/async-storage)
