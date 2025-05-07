@@ -30,7 +30,13 @@ export default function Profile() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>{`${user}`}</Text>
+      <View style={styles.contentProfile}>
+        <Text
+          style={styles.name}
+        >{`${user?.name.firstname} ${user?.name.lastname}`}</Text>
+        <Text style={styles.email}>{user?.email}</Text>
+        <Text>{user?.phone}</Text>
+      </View>
       <View style={styles.viewLogout}>
         <AppButton title="Logout" onPress={handleLogout} />
       </View>
@@ -43,6 +49,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     backgroundColor: white,
+    justifyContent: "space-between",
   },
   containerLoading: {
     flex: 1,
@@ -51,9 +58,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: white,
   },
+  contentProfile: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 32,
+  },
   viewLogout: {
     width: "100%",
-    marginTop: 20,
+    marginVertical: 20,
     height: 50,
+  },
+  name: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  email: {
+    fontSize: 14,
+    marginTop: 8,
   },
 });
