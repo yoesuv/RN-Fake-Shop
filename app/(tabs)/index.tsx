@@ -13,7 +13,7 @@ import {
 } from "react-native";
 
 const { width } = Dimensions.get("window");
-const itemWidth = (width - 48) / 2;
+const itemWidth = (width - 55) / 2;
 
 export default function Dashboard() {
   const { data: products, isLoading, error, isError } = useProducts();
@@ -68,7 +68,7 @@ export default function Dashboard() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
     backgroundColor: white,
   },
   containerLoading: {
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
   },
   flatListContent: {
     paddingVertical: 20,
+    paddingHorizontal: 5,
   },
   columnWrapper: {
     justifyContent: "space-between",
