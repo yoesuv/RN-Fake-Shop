@@ -5,6 +5,7 @@ import { red500, white } from "@/constants/Colors";
 import { ILoginInput, schemaYupLogin } from "@/constants/YupSchema";
 import { useLogin } from "@/hooks/useLogin";
 import { LoginRequest } from "@/models";
+import { saveToken } from "@/utils/storage";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "expo-router";
 import { Controller, useForm } from "react-hook-form";
@@ -31,8 +32,9 @@ export default function Index() {
       password: password,
     };
     mutate(loginData, {
-      onSuccess: (data) => {
+      onSuccess: async (data) => {
         console.log("Login successful, token:", data.token);
+        await saveToken(data.token);
         router.replace("/(tabs)");
       },
       onError: (error) => {
